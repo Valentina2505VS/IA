@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <h1>primer parcial IA</h1>
+    
+    </head>
+    <body background=" red">
+
+        <h2>import tensorflow as tf
+            import numpy as np</h2>
+        <p>estas  dos lineas de codigo  nos  permiten  trabajar con  arreglos  numericos y con  la  IA creada  por  google  que  es  tenserflow 
+            ya  que como vamos a  evaluar valores   dentro  de  nuestra  red  neuronal   son  necessarios  estas dos lubrerias   </p><br>
+        
+        
+        <h1> celsius = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
+            fahrenheit = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)</h1>
+            <p>ya que vamos a trabajar con  grados celsius y grados fahrenheit debemos   declarar estos  dos  arreglos  uno con  las entradas  en  celsius
+                y  el  arreglo de  salida  en  fahrenheit para este caso  trabajaremos  con  7 valores  los cuaes  nos ayudaran  a  la iA a aprender     </p><br>
+            
+         <h1>#capa = tf.keras.layers.Dense(units=1, input_shape=[1])</h1>
+            <p>para  las capas  usaremos  el  frameword keras en este caso  la creamos la capa de tipo densa  de salida  es decir una sola neurna de salida y  una nuerona de entrada asi  simplificamos
+                y  ahorramos algo  de  codigo  </p><br>
+           <h1></h1> #modelo = tf.keras.Sequential([capa])</h1>
+            <p> ya que  en  el  anterior  paso  las  capas estan  sin  ningun  tipo de modelo  en  este  caso  vamos  a implementar una por medio de jeras  un  modelo  secuencial  ya  que  este  modelo es el  mas  sensillo
+                dentro  de las  diferentes modelos de keras </p><br>
+            
+          <h1> oculta1 = tf.keras.layers.Dense(units=3, input_shape=[1])
+            oculta2 = tf.keras.layers.Dense(units=3)
+            salida = tf.keras.layers.Dense(units=1)
+            modelo = tf.keras.Sequential([oculta1, oculta2, salida]) </h1>
+         <p> asi  seria  el  codigo  de cada  una  de las  capas  internas   cada  entrada  como  de salida  ya que de  esta manera  especificamos  cuantas capas tiene  nuestra red  nuronal  </p><br>
+                    
+         <h2>modelo.compile(
+            optimizer=tf.keras.optimizers.Adam(0.1),
+            loss='mean_squared_error') 
+         </h2>
+        <p> ahora  debemos copilar para que  el modelo  empieze  a  entrenar  para  este  caso  solo  le ponemos  dos propiedades al  modelo  para procesar las matemanicas  
+            es  decir  un optimizador  y  una  funcion  de  perdida  , con ada   en el  optimizador nos  permite  es  que  en  cada  intervalo  la IAaprenda  y  mejore 
+            y  no  al  contrario  en  el  ada  le damos  un valor en  el cual  la IA va ir ajustando  para su  aprendisaje de tal  manera  que  si  el  numero  es  muy  bajo  la tasa  de aprendisaje sera lenta  
+            pero  si  agregamos  un valor  muy  grande este no podra ajustar  </p><br>
+        <p> para la  tasa  de  perdida usamos   error cuadratico  medio  con  esta  funcion  determina  que  es mejor  los  errores grandes  mas sencillos de ajustar  que errores muy pequeños y  complejos</p>
+
+        <h1>print("Comenzando entrenamiento...")
+            historial = modelo.fit(celsius, fahrenheit, epochs=1000, verbose=False)
+            print("Modelo entrenado!")</h1>
+
+            <p>con  esta  fraccion de  codigo  entrenamos la  red neuronal es  decir  usamos  funcion "fitt" a esta  funcion  le  damos los valores esperados 
+                teniendo  en  cuenta  que  son  7 valores  y cada vuelta  de  practica  los recorre decidimos  que  epochs se de mil  aunque  esto  puede variarpara su  entrenamiento
+            </p><br>
+
+        <h1>import matplotlib.pyplot as plt
+            plt.xlabel("# Epoca")
+            plt.ylabel("Magnitud de pérdida")
+            plt.plot(historial.history["loss"])
+        </h1>
+            <p> yq ue  esa  entrenada  nuestra  red nueronal  miremos  la funcion de  perdida  con  el  fin de ver que  tan bien  o  tan  mal  estaba a  lo largo  del  entrenamiento 
+                en pocas palabras  es  ver como   fueron disminullendo  los errores  mediante   una  grafica
+            </p>
+        <img src="a.jpg">
+        <p> ya  que  en esta  graficas podemos  denotar  que   solo  podia ser entrenada  con 500 vuelta ya que  apartir  de ese  punto  su  mejoramiento  fue   miu  pococ </p><br>
+
+        <h1>print("Hagamos una predicción!")
+            resultado = modelo.predict([100.0])
+            print("El resultado es " + str(resultado) + " fahrenheit!")
+        </h1>
+        <img src="b.jpg">
+        <p>con  estas lineas  de codigo  realizamos una pequeña prueba  de como nuestra red neuronal  aprendio  como  podemos comprobar  nos  arroja el resultado  en  fahrenheit</p><br>
+
+         <h1>print("Variables internas del modelo")
+            #print(capa.get_weights())
+            print(oculta1.get_weights())
+            print(oculta2.get_weights())
+            print(salida.get_weights())
+        </h1>   
+        <p>ccon  esta  funciones  podemos   ver  que  valores  fueron asignado  es  decir  el  peso  de cada  valor  en el  momento  de  recorrido 
+            como  recordamos   la  forma  sencilla  la  dejamos  en  comentarios  y  utilizamos cada entrada  es decir  nuestra  red  neuronal debia  asignar  valores 
+            en sesgo ,peso  
+        </p>
+        <img src="c.jpg">
+        <p>en este  caso  simplemente son procesos  de optimizacion  para llegar  al  resltado mas optimo    </p>
+        
+
+       
+
+    </body>
+</html>
